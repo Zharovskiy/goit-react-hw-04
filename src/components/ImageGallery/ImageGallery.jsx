@@ -15,4 +15,6 @@ const ImageGallery = ({ images, openModal }) => {
   );
 };
 
+// ImageGallery.displayName = "ImageGallery";
+
 export default ImageGallery;

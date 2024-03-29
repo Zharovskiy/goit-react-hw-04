@@ -7,14 +7,14 @@ const instance = axios.create({
   baseURL: "https://api.unsplash.com",
 });
 
-export const fetchImagesSearch = async (query, pageNumber) => {
+export const fetchImagesSearch = async (query, pageNumber, pagination) => {
   const response = await instance.get("/search/photos", {
     params: {
       client_id: "q_ilJfeXbJ7aLVkUf1TArJA5EUScrQgLm08H3UJvYpI",
       query: query,
       orientation: "landscape",
       page: pageNumber,
-      per_page: 12,
+      per_page: pagination,
     },
   });
   return response.data;

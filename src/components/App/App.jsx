@@ -7,22 +7,7 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import ImageModale from "../ImageModal/ImageModale.jsx";
 import css from "./App.module.css";
-
-const imgMod = {
-  alt_description: "alt",
-  description: "description",
-  likes: "likes",
-  links: {
-    download: "download",
-  },
-  urls: {
-    regular: "regular",
-  },
-  user: {
-    location: "location",
-    name: "name",
-  },
-};
+import { imgMod, pagination } from "../../config/init.js";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,9 +28,23 @@ const App = () => {
   };
 
   const updatePage = () => {
-    console.log("click");
     setCurrentPage(currentPage + 1);
   };
+
+  useEffect(() => {
+    console.log("Монтаж компонента або Рендер першої сторінки");
+    if (images.length > pagination) {
+      console.log("Рендер другої сторінки і наступних");
+      // const elemCard = document.querySelector('.card');
+      // const getItemCoords = scrollRef.current.getBoundingClientRect();
+      window.scrollBy({
+        top: 600,
+        // top: getItemCoords.height * 2,
+        // left: getItemCoords.left,
+        behavior: "smooth",
+      });
+    }
+  }, [images]);
 
   const openModal = (id) => {
     setImageModal(
@@ -56,26 +55,16 @@ const App = () => {
     setModalIsOpen(true);
   };
 
-  if (currentPage > 1) {
-    // scrollToNewImages();
-  }
-
-  // function scrollToNewImages() {
-  //   const elemCard = document.querySelector(".card");
-  //   const getItemCoords = elemCard.getBoundingClientRect();
-  //   window.scrollBy({
-  //     top: getItemCoords.height * 2,
-  //     left: getItemCoords.left,
-  //     behavior: "smooth",
-  //   });
-  // }
-
   useEffect(() => {
     async function fetchImages() {
       try {
         setError(false);
         setLoading(true);
-        const response = await fetchImagesSearch(query, currentPage);
+        const response = await fetchImagesSearch(
+          query,
+          currentPage,
+          pagination
+        );
         setMaxPage(response.total_pages);
         setImages((images) => {
           return [...images, ...response.results];
