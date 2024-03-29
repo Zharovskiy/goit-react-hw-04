@@ -1,0 +1,21 @@
+/* React Modale */
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content--after-open {
+  transform: translate(-50%, -50%);
+}
+
+.ReactModal__Content--before-close {
+  transform: translate(-50%, 50%);
+}
+/* React Modale */
