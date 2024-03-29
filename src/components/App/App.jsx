@@ -27,25 +27,6 @@ const App = () => {
     }
   };
 
-  const updatePage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  useEffect(() => {
-    console.log("Монтаж компонента або Рендер першої сторінки");
-    if (images.length > pagination) {
-      console.log("Рендер другої сторінки і наступних");
-      // const elemCard = document.querySelector('.card');
-      // const getItemCoords = scrollRef.current.getBoundingClientRect();
-      window.scrollBy({
-        top: 600,
-        // top: getItemCoords.height * 2,
-        // left: getItemCoords.left,
-        behavior: "smooth",
-      });
-    }
-  }, [images]);
-
   const openModal = (id) => {
     setImageModal(
       images.find((elem) => {
@@ -85,11 +66,18 @@ const App = () => {
       <SearchBar handleSubmit={handleSubmit} />
       <div className={css.container}>
         {images.length !== 0 && (
-          <ImageGallery images={images} openModal={openModal} />
+          <ImageGallery
+            images={images}
+            openModal={openModal}
+            pagination={pagination}
+          />
         )}
         <Loader loading={loading} />
         {images.length !== 0 && currentPage < maxPage && (
-          <LoadMoreBtn updatePage={updatePage} />
+          <LoadMoreBtn
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         )}
         {error && <ErrorMessage />}
         <ImageModale

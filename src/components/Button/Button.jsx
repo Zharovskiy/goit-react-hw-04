@@ -1,8 +1,8 @@
 import css from "./Button.module.css";
 
-const Button = ({ type, updatePage, children }) => {
+const Button = ({ type, setCurrentPage, children }) => {
   return (
-    <button className={css.button} type={type} onClick={updatePage}>
+    <button className={css.button} type={type} onClick={setCurrentPage}>
       {children}
     </button>
   );
