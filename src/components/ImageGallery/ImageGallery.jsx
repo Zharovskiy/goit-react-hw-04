@@ -17,7 +17,7 @@ const ImageGallery = ({ images, openModal, pagination }) => {
       }, 300);
       return () => clearTimeout(scrollId);
     }
-  });
+  }, [images, pagination]);
 
   return (
     <ul className={css.gallery}>
