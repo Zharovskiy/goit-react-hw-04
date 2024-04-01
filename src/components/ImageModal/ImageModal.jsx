@@ -5,7 +5,7 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { AiTwotoneLike } from "react-icons/ai";
 import { IoMdDownload } from "react-icons/io";
 
-const ImageModale = ({ isOpen, imageModal, onClose }) => {
+const ImageModal = ({ isOpen, imageModal, onClose }) => {
   const {
     alt_description,
     description,
@@ -53,4 +53,4 @@ const ImageModale = ({ isOpen, imageModal, onClose }) => {
   );
 };
 
-export default ImageModale;
+export default ImageModal;

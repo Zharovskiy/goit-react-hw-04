@@ -5,7 +5,7 @@ import ImageGallery from "../ImageGallery/ImageGallery.jsx";
 import Loader from "../Loader/Loader.jsx";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
-import ImageModale from "../ImageModal/ImageModale.jsx";
+import ImageModal from "../ImageModal/ImageModal.jsx";
 import css from "./App.module.css";
 import { imgMod, pagination } from "../../config/init.js";
 
@@ -80,7 +80,7 @@ const App = () => {
           />
         )}
         {error && <ErrorMessage />}
-        <ImageModale
+        <ImageModal
           isOpen={modalIsOpen}
           imageModal={imageModal}
           onClose={() => setModalIsOpen(false)}

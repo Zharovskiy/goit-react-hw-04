@@ -7,10 +7,10 @@ const ImageGallery = ({ images, openModal, pagination }) => {
 
   useEffect(() => {
     if (images.length > pagination) {
-      const getItemCoords = galleryRef.current.getBoundingClientRect();
-      scrollBy({
-        top: getItemCoords.height * 2,
-        left: getItemCoords.left,
+      const getCoords = galleryRef.current.getBoundingClientRect();
+      window.scrollBy({
+        top: getCoords.top - 70,
+        left: getCoords.left,
         behavior: "smooth",
       });
     }
@@ -18,15 +18,18 @@ const ImageGallery = ({ images, openModal, pagination }) => {
 
   return (
     <ul className={css.gallery}>
-      {images.map(({ id, alt_description, urls }) => {
+      {images.map(({ id, alt_description, urls }, index) => {
         return (
-          <li
-            className={css.item}
-            key={id}
-            ref={galleryRef}
-            onClick={() => openModal(id)}
-          >
-            <ImageCard alt_description={alt_description} small={urls.small} />
+          <li className={css.item} key={id}>
+            {index === images.length - pagination && (
+              <div ref={galleryRef}></div>
+            )}
+            <ImageCard
+              id={id}
+              alt_description={alt_description}
+              small={urls.small}
+              openModal={openModal}
+            />
           </li>
         );
       })}
