@@ -7,12 +7,15 @@ const ImageGallery = ({ images, openModal, pagination }) => {
 
   useEffect(() => {
     if (images.length > pagination) {
-      const getCoords = galleryRef.current.getBoundingClientRect();
-      window.scrollBy({
-        top: getCoords.top - 70,
-        left: getCoords.left,
-        behavior: "smooth",
-      });
+      const scrollId = setTimeout(() => {
+        const getCoords = galleryRef.current.getBoundingClientRect();
+        window.scrollBy({
+          top: getCoords.top - 70,
+          left: getCoords.left,
+          behavior: "smooth",
+        });
+      }, 300);
+      return () => clearTimeout(scrollId);
     }
   });
 
