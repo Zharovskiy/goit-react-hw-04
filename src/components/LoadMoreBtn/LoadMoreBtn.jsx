@@ -1,12 +1,8 @@
 import css from "./LoadMoreBtn.module.css";
 
-const LoadMoreBtn = ({ setCurrentPage, currentPage }) => {
+const LoadMoreBtn = ({ onLoadMore }) => {
   return (
-    <button
-      className={css.button}
-      type="button"
-      onClick={() => setCurrentPage(currentPage + 1)}
-    >
+    <button className={css.button} type="button" onClick={onLoadMore}>
       Load more
     </button>
   );
